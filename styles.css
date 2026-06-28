@@ -1,0 +1,640 @@
+@font-face {
+  font-family: "MiRelojDigital";
+  src: url("digital-7M.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --primary-color: #ee3333;
+  --stranger-red: #ff3333;
+  --color-white: #ffffff;
+  --bg-color: #000000;
+  --stranger-blue: #4cc9f0;
+  --stranger-yellow: #ffcc00;
+  --stranger-green: #00ff33;
+  --font-title: "Orbitron", sans-serif;
+  --font-body: "Courier Prime", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url("images/fondoStranger.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--color-white);
+  font-family: var(--font-title);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   3. PANTALLA DE INICIO (INTRO OVERLAY)
+   ========================================================================== */
+#intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition:
+    opacity 1s ease,
+    visibility 1s ease;
+}
+
+#intro-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.intro-content {
+  text-align: center;
+  padding: 20px;
+}
+
+#enter-btn,
+.btn-outline {
+  background: transparent;
+  color: var(--color-white);
+  border: 2px solid var(--stranger-red);
+  padding: 15px 35px;
+  font-size: 1.1rem;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--stranger-red);
+  transition: all 0.3s ease;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+}
+
+#enter-btn:hover,
+.btn-outline:hover {
+  background-color: var(--stranger-red);
+  color: var(--color-white);
+  box-shadow: 0 0 20px var(--stranger-red);
+  font-weight: bold;
+}
+
+.stranger-title {
+  display: flex;
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: 12vw;
+  text-transform: uppercase;
+}
+
+.letter {
+  display: inline-block;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--stranger-red);
+  text-shadow: 0 0 15px var(--stranger-red);
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.hero.animate .letter {
+  animation: intro-letter 4s ease-out forwards;
+  animation-delay: var(--d);
+}
+
+/* ==========================================================================
+   4. CONTENEDOR PRINCIPAL INTERNO
+   ========================================================================== */
+
+.screen-frame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1100px;
+  background: rgba(10, 11, 15, 0.85);
+  border: 4px solid var(--stranger-red);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow:
+    0 0 25px var(--stranger-red),
+    inset 0 0 20px var(--stranger-red);
+  backdrop-filter: blur(3px);
+}
+
+.top-status {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--stranger-red);
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.top-status .left {
+  text-align: left;
+  max-width: 200px;
+}
+.top-status .right {
+  text-align: right;
+}
+
+.logo-area {
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+
+.season-tag {
+  display: block;
+  font-family: "Goblin One", serif;
+  font-size: 2rem;
+  color: var(--stranger-blue);
+  letter-spacing: 6px;
+  margin-top: 5px;
+  text-shadow: 0 0 8px var(--stranger-blue);
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  font-weight: bold;
+  color: var(--color-white);
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+
+/* ==========================================================================
+   5. COLUMNA IZQUIERDA: PANEL DEL MAPA
+   ========================================================================== */
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.map-button-under {
+  margin-top: 15px;
+  background: transparent;
+  border: 1px solid var(--stranger-red);
+  color: var(--stranger-red);
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  max-width: 380px;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(255, 51, 51, 0.2);
+}
+
+/* ==========================================================================
+   6. COLUMNA DERECHA: INFORMACIÓN DEL EVENTO
+   ========================================================================== */
+.info-container {
+  text-align: center;
+}
+
+.section-label {
+  font-size: 0.9rem;
+  color: #888899;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+
+.event-title {
+  font-size: 1.6rem;
+  color: var(--stranger-blue);
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+.time-coordinates {
+  font-family: "MiRelojDigital", monospace;
+  font-size: 1.5rem;
+  color: var(--stranger-green);
+  text-shadow: 0 0 10px rgba(0, 255, 102, 0.6);
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+
+  -webkit-text-stroke: 0.5px var(--stranger-green);
+  filter: drop-shadow(0 0 5px rgba(0, 255, 102, 0.5))
+    drop-shadow(0 0 12px rgba(0, 255, 102, 0.3));
+}
+
+/* ==========================================================================
+   7. SECCIÓN DE LUCES NAVIDEÑAS (MENSAJE EN PARED)
+   ========================================================================== */
+
+   .lights-section {
+    width: 100%;
+    max-width: 320px; /* Limita el tamaño del bloque para que no se desparrame */
+    margin: 20px auto; /* Le da una separación sana arriba y abajo con otros elementos */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* La imagen del hilo de cable */
+.lights-wire {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: -15px; /* Margen negativo controlado para acercar los focos */
+    position: relative;
+    z-index: 1;
+}
+
+/* La tira de focos */
+.lights-string {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    position: relative;
+    z-index: 2; /* Pone los focos por encima del cable */
+}
+
+.light-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.light-container:nth-child(1),
+.light-container:nth-child(5) {
+  margin-top: 0px;
+}
+
+.light-container:nth-child(2),
+.light-container:nth-child(4) {
+  margin-top: 15px;
+}
+
+.light-container:nth-child(3) {
+  margin-top: 25px;
+}
+
+.light-bulb {
+  width: 26px;
+  height: 40px;
+  border-radius: 50% 50% 50% 50% / 35% 35% 65% 65%;
+  background-color: #1a1a1a;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.light-bulb::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 6px;
+  background: #444;
+  border-radius: 2px 2px 0 0;
+}
+
+.light-letter {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #d1d1d1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.light-container:nth-child(1) .light-bulb {
+  animation: neon-red 2.5s infinite alternate;
+}
+.light-container:nth-child(2) .light-bulb {
+  animation: neon-blue 1.8s infinite alternate;
+}
+.light-container:nth-child(3) .light-bulb {
+  animation: neon-yellow 3.2s infinite alternate;
+}
+.light-container:nth-child(4) .light-bulb {
+  animation: neon-green 2s infinite alternate;
+}
+.light-container:nth-child(5) .light-bulb {
+  animation: neon-red 4s infinite alternate;
+}
+/* ==========================================================================
+   8. BOTÓN DE CONTROL DE AUDIO INTERACTIVO
+   ========================================================================== */
+.audio-control-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid var(--stranger-red); /* Rojo Stranger Things */
+  color: var(--stranger-red);
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 100;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.audio-control-btn:hover {
+  background: var(--stranger-red);
+  color: #000;
+  box-shadow: 0 0 20px var(--stranger-red);
+  transform: scale(1.1);
+}
+/* ==========================================================================
+   9. ANIMACIONES KEYFRAMES
+   ============   ============================================================== */
+@keyframes intro-letter {
+  0% {
+    opacity: 0;
+    transform: scale(20) translateZ(500px);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  80% {
+    transform: scale(1) translateZ(0);
+    text-shadow: 0 0 20px var(--stranger-red);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--stranger-red);
+    box-shadow: none;
+  }
+}
+
+@keyframes neon-red {
+  0%,
+  45% {
+    background-color: #1a1a1a;
+    box-shadow: none;
+  }
+  55%,
+  100% {
+    background-color: #ff2222;
+    box-shadow:
+      0 0 30px #ff2222,
+      inset 0 2px 4px #fff;
+  }
+}
+@keyframes neon-blue {
+  0%,
+  30%,
+  80%,
+  100% {
+    background-color: #1a1a1a;
+    box-shadow: none;
+  }
+  40%,
+  70% {
+    background-color: #2255ff;
+    box-shadow:
+      0 0 30px #2255ff,
+      inset 0 2px 4px #fff;
+  }
+}
+@keyframes neon-yellow {
+  0%,
+  65% {
+    background-color: #1a1a1a;
+    box-shadow: none;
+  }
+  75%,
+  100% {
+    background-color: var(--stranger-yellow);
+    box-shadow:
+      0 0 30px var(--stranger-yellow),
+      inset 0 2px 4px var(--color-white);
+  }
+}
+@keyframes neon-green {
+  0%,
+  20%,
+  50%,
+  100% {
+    background-color: #1a1a1a;
+    box-shadow: none;
+  }
+  30%,
+  45%,
+  70% {
+    background-color: var(--stranger-green);
+    box-shadow:
+      0 0 30px var(--stranger-green),
+      inset 0 2px 4px #fff;
+  }
+}
+
+.logo-area .main-logo {
+    max-width: 100%;  /* Evita que el logo sea más ancho que su contenedor */
+    height: auto;     /* Mantiene la proporción de la imagen sin deformarla */
+    display: inline-block;
+}
+
+/* ==========================================================================
+   10. AJUSTES RESPONSIVOS (PARA CELULARES)
+   ========================================================================== */
+@media (max-width: 600px) {
+    body {
+        padding: 10px; /* Menos espacio alrededor en pantallas chicas */
+    }
+
+    .screen-frame {
+        padding: 15px; /* Reducimos el margen interno para ganar espacio */
+        border-width: 2px; /* Un borde un poco más fino se ve mejor en móvil */
+    }
+
+    /* Ajustes de Tipografías */
+    .season-tag {
+        font-size: 1.3rem; /* Encoge el texto "SEASON 7" */
+        letter-spacing: 3px;
+    }
+
+    .subtitle {
+        font-size: 1rem; /* Subtítulo más compacto */
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    .event-title {
+        font-size: 1.3rem; /* Nombre de Oscar responsivo */
+    }
+
+    .time-coordinates {
+        font-size: 1.1rem; /* El reloj digital se adapta para no romperse en dos líneas */
+        letter-spacing: 1px;
+    }
+
+    /* Ajustes para los botones */
+    #enter-btn, .btn-outline {
+        width: 100%; /* Hacemos que los botones ocupen todo el ancho disponible */
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+
+    .lights-section {
+        max-width: 260px; /* Se hace un poco más angosto en celulares */
+        margin: 15px auto;
+    }
+    .lights-wire {
+        margin-bottom: -10px; /* Reducimos el margen negativo en móvil */
+    }
+    .lights-string {
+        gap: 12px; /* Juntamos los focos para que quepan horizontalmente en el celular */
+    }
+
+    .light-bulb {
+        width: 18px;  /* Focos un poco más pequeños */
+        height: 28px;
+    }
+
+    .light-letter {
+        font-size: 1.3rem; /* Letras de los focos más chicas */
+    }
+
+    /* Reducimos la curvatura en móvil para evitar saltos raros */
+    .light-container:nth-child(2),
+    .light-container:nth-child(4) {
+        margin-top: 8px;
+    }
+
+    .light-container:nth-child(3) {
+        margin-top: 12px;
+    }
+    .dashboard-content {
+        width: 100%;
+        align-items: center; 
+    }
+
+    .info-container {
+        width: 100%;            
+        display: flex;
+        flex-direction: column;
+        align-items: center;    
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   11. AJUSTES PARA PANTALLAS ULTRA PEQUEÑAS (CELULARES DE 480PX O MENOS)
+   ========================================================================== */
+@media (max-width: 480px) {
+    .screen-frame {
+        padding: 12px; /* Aprovechamos al máximo cada milímetro de pantalla */
+    }
+
+    /* Reducimos el tamaño de los títulos principales */
+    .season-tag {
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+
+    /* Ajustamos los datos del evento */
+    .event-title {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .time-coordinates {
+        font-size: 0.95rem; /* Ajuste clave para que las coordenadas de tiempo quepan en una sola línea */
+        letter-spacing: 0.5px;
+        margin-bottom: 15px;
+    }
+
+    /* Achicamos los botones para que no se vean gigantes en pantallas mini */
+    #enter-btn, .btn-outline {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .lights-section {
+        max-width: 200px; /* Más compacto para pantallas ultra pequeñas */
+    }
+    .lights-wire {
+        margin-bottom: -8px; /* Ajuste milimétrico para pantallas mini */
+    }
+
+    .lights-string {
+        gap: 6px; /* Juntamos los focos casi al mínimo espacio posible */
+    }
+
+    .light-bulb {
+        width: 14px;  /* Focos más estilizados y pequeños */
+        height: 22px;
+    }
+
+    .light-letter {
+        font-size: 1.1rem; /* Letras más pequeñas para que sigan centradas bajo cada foco */
+    }
+
+    /* Suavizamos aún más los márgenes de la curvatura para evitar saltos de línea */
+    .light-container:nth-child(2),
+    .light-container:nth-child(4) {
+        margin-top: 4px;
+    }
+
+    .light-container:nth-child(3) {
+        margin-top: 8px;
+    }
+}

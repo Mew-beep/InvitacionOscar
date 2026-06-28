@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stranger Things 7 - Invitación Digital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chonburi&family=Goblin+One&family=Orbitron:wght@400..900&family=Roboto&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="intro-overlay">
+        <div class="intro-content">
+            <section class="hero">
+                <div class="stranger-title">
+                    <span class="letter" style="--d:0s">O</span>
+                    <span class="letter" style="--d:0.1s">S</span>
+                    <span class="letter" style="--d:0.2s">C</span>
+                    <span class="letter" style="--d:0.3s">A</span>
+                    <span class="letter" style="--d:0.4s">R</span>
+                </div>
+            </section>
+            <button id="enter-btn">INGRESAR ...</button>
+        </div>
+    </div>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <button id="muteBtn" class="audio-control-btn">
+        <i id="audioIcon" class="fa-solid fa-volume-high"></i>
+    </button>
+
+    <div class="screen-frame">
+
+        <div class="logo-area">
+            <img src="images/logoStrangerLinea.png" alt="Stranger Things" class="main-logo">
+            <span class="season-tag">SEASON 7</span>
+        </div>
+
+        <div class="subtitle">LA GRIETA SE HA ABIERTO...</div>
+
+        <div class="dashboard-content">
+
+            <div class="info-container">
+                <div class="section-label">ESTAS INVITADO AL </div>
+                <div class="event-title">CUMPLEAÑOS DE Oscar</div>
+
+                <div class="section-label">COORDENADAS DE TIEMPO:</div>
+                <div class="time-coordinates">DOMINGO, 19 JULIO, 04:00 P.M.</div>
+
+
+                <div class="section-label">Base secreta</div>
+                <div class="map-container">
+                    <img src="images/mapaStranger.png" alt="Mapa de Hawkins"
+                        style="width: 100%; height: auto; display: block; border-radius: 4px;">
+                    <a href="https://maps.app.goo.gl/NTLVxuDTv4ZQT87J8" class="btn-outline">Ver Mapa ...</a>
+                </div>
+
+
+                <div class="section-label">MENSAJE RECIBIDO:</div>
+
+                <div class="lights-section">
+                    <img src="images/hilo.png" alt="Hilo de luces" class="lights-wire">
+                    <div class="lights-string">
+                        <div class="light-container animation-1">
+                            <div class="light-bulb red"></div>
+                            <div class="light-letter">O</div>
+                        </div>
+                        <div class="light-container animation-2">
+                            <div class="light-bulb blue"></div>
+                            <div class="light-letter">S</div>
+                        </div>
+                        <div class="light-container animation-3">
+                            <div class="light-bulb yellow"></div>
+                            <div class="light-letter">C</div>
+                        </div>
+                        <div class="light-container animation-4">
+                            <div class="light-bulb green"></div>
+                            <div class="light-letter">A</div>
+                        </div>
+                        <div class="light-container animation-5">
+                            <div class="light-bulb red"></div>
+                            <div class="light-letter">R</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
