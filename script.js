@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const enterBtn = document.getElementById('enter-btn');
     const hero = document.querySelector('.hero');
     
-    // Control numérico para detener o arrancar el bucle del Canvas
     let animationId = null;
 
     if (enterBtn && introOverlay) {
@@ -28,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("La reproducción automática fue bloqueada por el navegador: ", error);
             });
 
-            // OPTIMIZACIÓN CLAVE: El canvas arranca a trabajar justo cuando se quita el intro
             animate();
 
             setTimeout(() => {
@@ -64,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. SISTEMA DE DESTELLOS DEL MUNDO DEL REVÉS
     // ==========================================================================
     const particles = [];
-    // Reducimos un poco más en móvil (20 es ideal para fluidez pura en pantallas chicas)
     const particleCount = isMobile ? 20 : 70;
 
     class Particle {
@@ -161,6 +158,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ELIMINADO: Ya no ejecutamos animate() aquí al inicio de la carga. 
-    // Ahora arranca limpiamente en la línea 29 al presionar "INGRESAR".
 });
