@@ -679,3 +679,64 @@ body {
         max-width: 70%;
     }
 }
+
+/* ==========================================================================
+   ESTILOS DEL FOOTER - TEMÁTICA STRANGER THINGS
+   ========================================================================== */
+
+.footer-stranger {
+    margin-top: 40px;
+    padding: 20px 10px 10px 10px;
+    text-align: center;
+    background: rgba(10, 10, 12, 0.85); /* Fondo oscuro semitransparente */
+    border-radius: 8px;
+    font-family: 'Share Tech Mono', 'Orbitron', monospace; /* Fuentes tecnológicas/retro */
+    letter-spacing: 1px;
+}
+
+/* Línea divisoria estilo grieta/neón */
+.linea-neon-roja {
+    height: 2px;
+    background-color: #ff1e1e;
+    width: 80%;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 0 10px #ff1e1e, 0 0 20px #ff1e1e;
+}
+
+/* Texto secundario */
+.texto-creativo {
+    color: #cccccc;
+    font-size: 0.9rem;
+    margin: 5px 0;
+    text-transform: uppercase;
+}
+
+.firma-ano {
+    color: #888888;
+    font-size: 0.8rem;
+    margin: 5px 0 12px 0;
+}
+
+/* Enlace de contacto estilo botón neón sutil */
+.link-contacto-stranger {
+    display: inline-block;
+    color: #ff1e1e;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 30, 30, 0.4);
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 4px rgba(255, 30, 30, 0.5);
+}
+
+/* Efecto Hover al pasar el mouse por el link de Ari */
+.link-contacto-stranger:hover {
+    color: #ffffff;
+    background-color: #ff1e1e;
+    box-shadow: 0 0 15px #ff1e1e;
+    text-shadow: none;
+    border-color: #ff1e1e;
+}

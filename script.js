@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (enterBtn && introOverlay) {
         enterBtn.addEventListener('click', () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // 'smooth' para subida fluida, 'auto' para golpe inmediato
+            });
+            
             introOverlay.classList.add('hidden'); 
             
             audio.play().catch(error => {
@@ -37,11 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
+    let isMobile = window.innerWidth < 768;
 
     function resizeCanvas() {
         canvas.width = window.innerWidth || 1920;
         canvas.height = window.innerHeight || 1080;
+        isMobile = window.innerWidth < 768; // Recalcula si el usuario rota el celular
     }
+
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
@@ -49,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. SISTEMA DE DESTELLOS DEL MUNDO DEL REVÉS
     // ==========================================================================
     const particles = [];
-    const particleCount = 100; 
+    const particleCount = isMobile ? 40 : 100;
 
     class Particle {
         constructor() {
@@ -63,8 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
             this.baseColor = 'rgba(255, 30, 30'; 
 
             this.y = canvas.height + 20; 
+
+            if (isMobile) {
+                this.size = Math.random() * 8 + 8;
+            } else {
+                this.size = Math.random() * 15 + 15;
+            }
             
-            this.size = Math.random() * 15 + 15;
             this.speedY = -(Math.random() * 0.3 + 0.1);
             this.speedX = (Math.random() - 0.5) * 0.15;
             this.opacity = Math.random() * 0.6 + 0.3;
@@ -82,8 +96,10 @@ document.addEventListener("DOMContentLoaded", () => {
         draw() {
             ctx.save(); 
 
-            ctx.shadowBlur = 20; 
-            ctx.shadowColor = `${this.baseColor}, ${this.opacity})`; 
+            if (!isMobile) {
+                ctx.shadowBlur = 20; 
+                ctx.shadowColor = `${this.baseColor}, ${this.opacity})`; 
+            }
 
             let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
             
