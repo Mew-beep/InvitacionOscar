@@ -10,13 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const introOverlay = document.getElementById('intro-overlay');
     const enterBtn = document.getElementById('enter-btn');
     const hero = document.querySelector('.hero');
+    
+    // Control numérico para detener o arrancar el bucle del Canvas
+    let animationId = null;
 
     if (enterBtn && introOverlay) {
         enterBtn.addEventListener('click', () => {
 
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // 'smooth' para subida fluida, 'auto' para golpe inmediato
+                behavior: 'smooth'
             });
             
             introOverlay.classList.add('hidden'); 
@@ -24,6 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
             audio.play().catch(error => {
                 console.log("La reproducción automática fue bloqueada por el navegador: ", error);
             });
+
+            // OPTIMIZACIÓN CLAVE: El canvas arranca a trabajar justo cuando se quita el intro
+            animate();
 
             setTimeout(() => {
                 introOverlay.style.display = "none";
@@ -48,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function resizeCanvas() {
         canvas.width = window.innerWidth || 1920;
         canvas.height = window.innerHeight || 1080;
-        isMobile = window.innerWidth < 768; // Recalcula si el usuario rota el celular
+        isMobile = window.innerWidth < 768; 
     }
 
     window.addEventListener('resize', resizeCanvas);
@@ -58,30 +64,30 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. SISTEMA DE DESTELLOS DEL MUNDO DEL REVÉS
     // ==========================================================================
     const particles = [];
-    const particleCount = isMobile ? 30 : 70;
+    // Reducimos un poco más en móvil (20 es ideal para fluidez pura en pantallas chicas)
+    const particleCount = isMobile ? 20 : 70;
 
     class Particle {
         constructor() {
             this.reset();
+            // Distribuir inicialmente a lo largo del alto para que no salgan todas juntas
             this.y = Math.random() * canvas.height; 
         }
 
         reset() {
             this.x = Math.random() * canvas.width;
-            
             this.baseColor = 'rgba(255, 30, 30'; 
-
             this.y = canvas.height + 20; 
 
             if (isMobile) {
-                this.size = Math.random() * 8 + 6;
+                this.size = Math.random() * 6 + 4; // Partículas ligeramente más pequeñas en móvil
             } else {
                 this.size = Math.random() * 15 + 15;
             }
             
             this.speedY = -(Math.random() * 0.3 + 0.1);
             this.speedX = (Math.random() - 0.5) * 0.15;
-            this.opacity = Math.random() * 0.6 + 0.3;
+            this.opacity = Math.random() * 0.5 + 0.2;
         }
 
         update() {
@@ -97,17 +103,20 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.save(); 
 
             if (!isMobile) {
+                // Modo PC: Con sombras y gradientes pesados
                 ctx.shadowBlur = 20; 
                 ctx.shadowColor = `${this.baseColor}, ${this.opacity})`; 
+
+                let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+                gradient.addColorStop(0, `${this.baseColor}, ${this.opacity})`); 
+                gradient.addColorStop(0.5, `${this.baseColor}, ${this.opacity * 0.6})`); 
+                gradient.addColorStop(1, `${this.baseColor}, 0)`);
+                ctx.fillStyle = gradient;
+            } else {
+                // Modo Celular: Color plano directo con opacidad. Rendimiento 100% fluido.
+                ctx.fillStyle = `${this.baseColor}, ${this.opacity})`;
             }
 
-            let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-            
-            gradient.addColorStop(0, `${this.baseColor}, ${this.opacity})`); 
-            gradient.addColorStop(0.5, `${this.baseColor}, ${this.opacity * 0.6})`); 
-            gradient.addColorStop(1, `${this.baseColor}, 0)`);
-
-            ctx.fillStyle = gradient;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -117,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Inicializar el arreglo de partículas
     for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
     }
@@ -129,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
             particle.draw();
         });
 
-        requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(animate);
     }
 
     // ==========================================================================
@@ -151,5 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    animate();
+    // ELIMINADO: Ya no ejecutamos animate() aquí al inicio de la carga. 
+    // Ahora arranca limpiamente en la línea 29 al presionar "INGRESAR".
 });
