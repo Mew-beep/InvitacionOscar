@@ -12,7 +12,6 @@
   font-style: normal;
 }
 
-
 :root {
   --primary-color: #ee3333;
   --stranger-red: #ff3333;
@@ -125,16 +124,16 @@ body {
 
 .letter {
   display: inline-block;
-  opacity: 0; 
-  transform: scale(3); 
-  filter: blur(8px); 
-  
+  opacity: 0;
+  transform: scale(3);
+  filter: blur(8px);
+
   animation-delay: var(--d);
   animation-duration: 1.2s;
-  animation-fill-mode: forwards; 
-  
+  animation-fill-mode: forwards;
+
   /* Puedes usar linear para velocidad constante o cubic-bezier para suavizado de cine */
-  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1); 
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .hero.animate .letter {
@@ -142,31 +141,31 @@ body {
 }
 
 @keyframes aparecerLetraStranger {
-    0% {
-        opacity: 0;
-        color: transparent;
-        -webkit-text-stroke: 2px var(--stranger-red);
-        text-shadow: 0 0 5px var(--stranger-red);
-        transform: scale(3); /* Arranca gigante */
-        filter: blur(12px);
-    }
-    50% {
-        opacity: 0.6;
-        color: transparent;
-        -webkit-text-stroke: 2px var(--stranger-red);
-        text-shadow: 0 0 10px var(--stranger-red);
-        filter: blur(4px);
-        /* BORRADO EL TRANSFORM DE AQUÍ: 
+  0% {
+    opacity: 0;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--stranger-red);
+    text-shadow: 0 0 5px var(--stranger-red);
+    transform: scale(3); /* Arranca gigante */
+    filter: blur(12px);
+  }
+  50% {
+    opacity: 0.6;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--stranger-red);
+    text-shadow: 0 0 10px var(--stranger-red);
+    filter: blur(4px);
+    /* BORRADO EL TRANSFORM DE AQUÍ: 
            Así evitamos que la animación se parta en dos trayectos */
-    }
-    100% {
-        opacity: 1;
-        color: transparent;
-        -webkit-text-stroke: 2px var(--stranger-red);
-        text-shadow: 0 0 15px var(--stranger-red); 
-        transform: scale(1); /* Llega a su tamaño final de corrido */
-        filter: blur(0px);
-    }
+  }
+  100% {
+    opacity: 1;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--stranger-red);
+    text-shadow: 0 0 15px var(--stranger-red);
+    transform: scale(1); /* Llega a su tamaño final de corrido */
+    filter: blur(0px);
+  }
 }
 /* ==========================================================================
    4. CONTENEDOR PRINCIPAL INTERNO
@@ -332,32 +331,32 @@ body {
    7. SECCIÓN DE LUCES NAVIDEÑAS (MENSAJE EN PARED)
    ========================================================================== */
 
-   .lights-section {
-    width: 100%;
-    max-width: 320px;
-    margin: 20px auto;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.lights-section {
+  width: 100%;
+  max-width: 320px;
+  margin: 20px auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .lights-wire {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin-bottom: -15px;
-    position: relative;
-    z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: -15px;
+  position: relative;
+  z-index: 1;
 }
 
 .lights-string {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    width: 100%;
-    position: relative;
-    z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 .light-container {
@@ -545,218 +544,249 @@ body {
 }
 
 .logo-area {
-    text-align: center;
-    margin-top: 25px;   
-    margin-bottom: 35px;
-    padding-left: 20px; 
-    padding-right: 20px;
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 35px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .logo-area .main-logo {
-    display: inline-block;
-    max-width: 90%;
-    height: auto;
+  display: inline-block;
+  max-width: 90%;
+  height: auto;
 }
 
 /* ==========================================================================
    10. AJUSTES RESPONSIVOS (PARA CELULARES)
    ========================================================================== */
 @media (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
+  body {
+    padding: 10px;
+  }
 
-    .screen-frame {
-        padding: 15px;
-        border-width: 2px;
-    }
+  .screen-frame {
+    padding: 15px;
+    border-width: 2px;
+  }
 
-    .season-tag {
-        font-size: 1.3rem;
-        letter-spacing: 3px;
-    }
+  .season-tag {
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+  }
 
-    .subtitle {
-        font-size: 1rem;
-        letter-spacing: 1px;
-        margin-bottom: 20px;
-    }
+  .subtitle {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
 
-    .event-title {
-        font-size: 1.3rem;
-    }
+  .event-title {
+    font-size: 1.3rem;
+  }
 
-    .time-coordinates {
-        font-size: 2rem;
-        letter-spacing: 1px;
-    }
+  .time-coordinates {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
 
-    #enter-btn, .btn-outline {
-        width: auto;
-        padding: 12px 20px;
-        font-size: 1rem;
-    }
+  #enter-btn,
+  .btn-outline {
+    width: auto;
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
 
+  .lights-section {
+    max-width: 260px;
+    margin: 15px auto;
+  }
+  .lights-wire {
+    margin-bottom: -10px;
+  }
+  .lights-string {
+    gap: 12px;
+  }
 
-    .lights-section {
-        max-width: 260px;
-        margin: 15px auto;
-    }
-    .lights-wire {
-        margin-bottom: -10px;
-    }
-    .lights-string {
-        gap: 12px;
-    }
+  .light-bulb {
+    width: 18px;
+    height: 28px;
+  }
 
-    .light-bulb {
-        width: 18px;
-        height: 28px;
-    }
+  .light-letter {
+    font-size: 5rem;
+  }
 
-    .light-letter {
-        font-size: 5rem;
-    }
+  .light-container:nth-child(2),
+  .light-container:nth-child(4) {
+    margin-top: 8px;
+  }
 
-    .light-container:nth-child(2),
-    .light-container:nth-child(4) {
-        margin-top: 8px;
-    }
+  .light-container:nth-child(3) {
+    margin-top: 12px;
+  }
+  .dashboard-content {
+    width: 100%;
+    align-items: center;
+  }
 
-    .light-container:nth-child(3) {
-        margin-top: 12px;
-    }
-    .dashboard-content {
-        width: 100%;
-        align-items: center; 
-    }
+  .info-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .logo-area .main-logo {
+    max-width: 80%;
+  }
 
-    .info-container {
-        width: 100%;            
-        display: flex;
-        flex-direction: column;
-        align-items: center;    
-        text-align: center;
-    }
-    .logo-area .main-logo {
-        max-width: 80%; 
-    }
+  .footer-stranger {
+    margin-top: 30px;
+    padding: 15px 10px 30px 10px; /* Añadimos 30px abajo para que el botón no quede pegado al borde del cel */
+    background: rgba(
+      5,
+      5,
+      6,
+      0.95
+    ); /* Más oscuro para mejorar legibilidad en pantallas chicas */
+  }
 
-    .footer-stranger {
-        margin-top: 30px;
-        padding: 15px 10px 30px 10px; /* Añadimos 30px abajo para que el botón no quede pegado al borde del cel */
-        background: rgba(5, 5, 6, 0.95); /* Más oscuro para mejorar legibilidad en pantallas chicas */
-    }
+  .texto-creativo {
+    font-size: 0.75rem; /* Letras un poco más pequeñas para que no se rompan en dos líneas */
+  }
 
-    .texto-creativo {
-        font-size: 0.75rem; /* Letras un poco más pequeñas para que no se rompan en dos líneas */
-    }
+  .firma-ano {
+    font-size: 0.7rem;
+  }
 
-    .firma-ano {
-        font-size: 0.7rem;
-    }
+  .link-contacto-stranger {
+    font-size: 0.75rem;
+    padding: 10px 12px; /* Botón ligeramente más alto, ideal para presionar con el dedo */
+    width: 90%; /* Se adapta al ancho de la pantalla móvil */
+  }
 
-    .link-contacto-stranger {
-        font-size: 0.75rem;
-        padding: 10px 12px; /* Botón ligeramente más alto, ideal para presionar con el dedo */
-        width: 90%; /* Se adapta al ancho de la pantalla móvil */
-    }
+  .stranger-title {
+    font-size: 14vw; /* Ajustamos el tamaño relativo para que llene bien el ancho */
+    gap: 10px; /* Cerramos un poco el espacio entre letras */
+  }
+
+  .letter {
+    /* Multiplicamos el delay sutilmente para que en pantallas medianas */
+    /* se disfrute más el efecto escalonado de la intro */
+    animation-delay: calc(var(--d) * 1.5);
+  }
 }
 
 /* ==========================================================================
    11. AJUSTES PARA PANTALLAS ULTRA PEQUEÑAS (CELULARES DE 480PX O MENOS)
    ========================================================================== */
 @media (max-width: 480px) {
-    .screen-frame {
-        padding: 12px;
-    }
+  .screen-frame {
+    padding: 12px;
+  }
 
-    .season-tag {
-        font-size: 1.1rem;
-        letter-spacing: 2px;
-    }
+  .season-tag {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
 
-    .subtitle {
-        font-size: 0.9rem;
-        margin-bottom: 15px;
-    }
+  .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
 
-    .event-title {
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-    }
+  .event-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
 
-    .time-coordinates {
-        font-size: 1.5rem;
-        letter-spacing: 0.5px;
-        margin-bottom: 15px;
-    }
+  .time-coordinates {
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+  }
 
-    #enter-btn, .btn-outline {
-        padding: 10px 15px;
-        font-size: 0.9rem;
-    }
+  #enter-btn,
+  .btn-outline {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
 
-    .lights-section {
-        max-width: 200px;
-    }
-    .lights-wire {
-        margin-bottom: -8px;
-    }
+  .lights-section {
+    max-width: 200px;
+  }
+  .lights-wire {
+    margin-bottom: -8px;
+  }
 
-    .lights-string {
-        gap: 6px;
-    }
+  .lights-string {
+    gap: 6px;
+  }
 
-    .light-bulb {
-        width: 14px;
-        height: 22px;
-    }
+  .light-bulb {
+    width: 14px;
+    height: 22px;
+  }
 
-    .light-letter {
-        font-size: 2.5rem;
-    }
+  .light-letter {
+    font-size: 2.5rem;
+  }
 
-    .light-container:nth-child(2),
-    .light-container:nth-child(4) {
-        margin-top: 4px;
-    }
+  .light-container:nth-child(2),
+  .light-container:nth-child(4) {
+    margin-top: 4px;
+  }
 
-    .light-container:nth-child(3) {
-        margin-top: 8px;
-    }
+  .light-container:nth-child(3) {
+    margin-top: 8px;
+  }
 
-    .logo-area .main-logo {
-        max-width: 70%;
-    }
+  .logo-area .main-logo {
+    max-width: 70%;
+  }
 
-    .footer-stranger {
-        margin-top: 25px;
-        padding: 12px 8px 35px 8px; /* Más colchón abajo para evitar la barra de navegación del celular */
-    }
+  .footer-stranger {
+    margin-top: 25px;
+    padding: 12px 8px 35px 8px; /* Más colchón abajo para evitar la barra de navegación del celular */
+  }
 
-    .linea-neon-roja {
-        width: 90%; /* Hacemos la línea un poquito más larga para equilibrar la pantalla chica */
-        margin-bottom: 12px;
-    }
+  .linea-neon-roja {
+    width: 90%; /* Hacemos la línea un poquito más larga para equilibrar la pantalla chica */
+    margin-bottom: 12px;
+  }
 
-    .texto-creativo {
-        font-size: 0.7rem; /* Reducimos para evitar saltos de línea raros */
-        letter-spacing: 0.5px;
-    }
+  .texto-creativo {
+    font-size: 0.7rem; /* Reducimos para evitar saltos de línea raros */
+    letter-spacing: 0.5px;
+  }
 
-    .firma-ano {
-        font-size: 0.65rem;
-        margin: 4px 0 10px 0;
-    }
+  .firma-ano {
+    font-size: 0.65rem;
+    margin: 4px 0 10px 0;
+  }
 
-    .link-contacto-stranger {
-        font-size: 0.68rem; /* Tamaño óptimo para que "Diseño y desarrollo por Ari | Cotiza aquí" quepa completo */
-        padding: 12px 8px; /* Más alto el botón para que sea súper fácil de clickear con el pulgar */
-        width: 100%; /* Ocupa todo el ancho disponible del contenedor */
-        letter-spacing: 0.5px;
-        white-space: normal; /* Si el celular es extremadamente viejo o chico, permite romper línea limpiamente */
-    }
+  .link-contacto-stranger {
+    font-size: 0.68rem; /* Tamaño óptimo para que "Diseño y desarrollo por Ari | Cotiza aquí" quepa completo */
+    padding: 12px 8px; /* Más alto el botón para que sea súper fácil de clickear con el pulgar */
+    width: 100%; /* Ocupa todo el ancho disponible del contenedor */
+    letter-spacing: 0.5px;
+    white-space: normal; /* Si el celular es extremadamente viejo o chico, permite romper línea limpiamente */
+  }
+
+  .stranger-title {
+    font-size: 15vw; /* Tamaño ideal para celulares compactos */
+    gap: 6px; /* Espacio mínimo para que "OSCAR" no se parta en dos renglones */
+  }
+
+  .letter {
+    /* En celulares el ojo procesa más rápido, espaciamos la entrada */
+    animation-delay: calc(var(--d) * 2);
+
+    /* Bajamos un poco el desenfoque inicial para que los procesadores */
+    /* de celulares más viejos no tengan lag al procesar la escala 3 */
+    filter: blur(6px);
+  }
 }
 
 /* ==========================================================================
@@ -764,59 +794,61 @@ body {
    ========================================================================== */
 
 .footer-stranger {
-    margin-top: 40px;
-    padding: 20px 10px 10px 10px;
-    text-align: center;
-    background: rgba(10, 10, 12, 0.85); /* Fondo oscuro semitransparente */
-    border-radius: 8px;
-    font-family: 'Share Tech Mono', 'Orbitron', monospace; /* Fuentes tecnológicas/retro */
-    letter-spacing: 1px;
+  margin-top: 40px;
+  padding: 20px 10px 10px 10px;
+  text-align: center;
+  background: rgba(10, 10, 12, 0.85); /* Fondo oscuro semitransparente */
+  border-radius: 8px;
+  font-family:
+    "Share Tech Mono", "Orbitron", monospace; /* Fuentes tecnológicas/retro */
+  letter-spacing: 1px;
 }
 
 /* Línea divisoria estilo grieta/neón */
 .linea-neon-roja {
-    height: 2px;
-    background-color: #ff1e1e;
-    width: 80%;
-    margin: 0 auto 15px auto;
-    box-shadow: 0 0 10px #ff1e1e, 0 0 20px #ff1e1e;
+  height: 2px;
+  background-color: #ff1e1e;
+  width: 80%;
+  margin: 0 auto 15px auto;
+  box-shadow:
+    0 0 10px #ff1e1e,
+    0 0 20px #ff1e1e;
 }
 
 /* Texto secundario */
 .texto-creativo {
-    color: #cccccc;
-    font-size: 0.9rem;
-    margin: 5px 0;
-    text-transform: uppercase;
+  color: #cccccc;
+  font-size: 0.9rem;
+  margin: 5px 0;
+  text-transform: uppercase;
 }
 
 .firma-ano {
-    color: #888888;
-    font-size: 0.8rem;
-    margin: 5px 0 12px 0;
+  color: #888888;
+  font-size: 0.8rem;
+  margin: 5px 0 12px 0;
 }
 
 /* Enlace de contacto estilo botón neón sutil */
 .link-contacto-stranger {
-    display: inline-block;
-    color: #ff1e1e;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: 1px solid rgba(255, 30, 30, 0.4);
-    padding: 6px 12px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    text-shadow: 0 0 4px rgba(255, 30, 30, 0.5);
+  display: inline-block;
+  color: #ff1e1e;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 30, 30, 0.4);
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 4px rgba(255, 30, 30, 0.5);
 }
 
 /* Efecto Hover al pasar el mouse por el link de Ari */
 .link-contacto-stranger:hover {
-    color: #ffffff;
-    background-color: #ff1e1e;
-    box-shadow: 0 0 15px #ff1e1e;
-    text-shadow: none;
-    border-color: #ff1e1e;
+  color: #ffffff;
+  background-color: #ff1e1e;
+  box-shadow: 0 0 15px #ff1e1e;
+  text-shadow: none;
+  border-color: #ff1e1e;
 }
-
