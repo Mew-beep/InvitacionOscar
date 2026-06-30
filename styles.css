@@ -5,6 +5,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Pincel";
+  src: url("Amanojaku.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 :root {
   --primary-color: #ee3333;
   --stranger-red: #ff3333;
@@ -24,7 +32,7 @@
 }
 
 body {
-  background-image: url("images/fondoStranger.png");
+  background-color: var(--bg-color);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -198,6 +206,33 @@ body {
   align-items: center;
 }
 
+.room-scene {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.responsive-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(231, 29, 54, 0.4);
+  display: block;
+}
+
+.polaroid {
+  max-width: 80%;
+  transform: rotate(-2deg);
+  border: 10px solid #fff;
+  filter: sepia(30%) contrast(1.2);
+  transition: transform 0.5s;
+}
+
+.polaroid:hover {
+  transform: rotate(0) scale(1.05);
+  box-shadow: 0 0 30px var(--stranger-red);
+  z-index: 10;
+}
 /* ==========================================================================
    5. COLUMNA IZQUIERDA: PANEL DEL MAPA
    ========================================================================== */
@@ -250,7 +285,7 @@ body {
 
 .time-coordinates {
   font-family: "MiRelojDigital", monospace;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: var(--stranger-green);
   text-shadow: 0 0 10px rgba(0, 255, 102, 0.6);
   text-transform: uppercase;
@@ -268,32 +303,30 @@ body {
 
    .lights-section {
     width: 100%;
-    max-width: 320px; /* Limita el tamaño del bloque para que no se desparrame */
-    margin: 20px auto; /* Le da una separación sana arriba y abajo con otros elementos */
+    max-width: 320px;
+    margin: 20px auto;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* La imagen del hilo de cable */
 .lights-wire {
     display: block;
     width: 100%;
     height: auto;
-    margin-bottom: -15px; /* Margen negativo controlado para acercar los focos */
+    margin-bottom: -15px;
     position: relative;
     z-index: 1;
 }
 
-/* La tira de focos */
 .lights-string {
     display: flex;
     justify-content: center;
     gap: 30px;
     width: 100%;
     position: relative;
-    z-index: 2; /* Pone los focos por encima del cable */
+    z-index: 2;
 }
 
 .light-container {
@@ -339,9 +372,9 @@ body {
 }
 
 .light-letter {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Pincel", sans-serif;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 8rem;
   color: #d1d1d1;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
@@ -369,7 +402,7 @@ body {
   top: 20px;
   right: 20px;
   background: rgba(0, 0, 0, 0.7);
-  border: 2px solid var(--stranger-red); /* Rojo Stranger Things */
+  border: 2px solid var(--stranger-red);
   color: var(--stranger-red);
   cursor: pointer;
   font-size: 1.2rem;
@@ -480,10 +513,18 @@ body {
   }
 }
 
+.logo-area {
+    text-align: center;
+    margin-top: 25px;   
+    margin-bottom: 35px;
+    padding-left: 20px; 
+    padding-right: 20px;
+}
+
 .logo-area .main-logo {
-    max-width: 100%;  /* Evita que el logo sea más ancho que su contenedor */
-    height: auto;     /* Mantiene la proporción de la imagen sin deformarla */
     display: inline-block;
+    max-width: 90%;
+    height: auto;
 }
 
 /* ==========================================================================
@@ -491,64 +532,61 @@ body {
    ========================================================================== */
 @media (max-width: 600px) {
     body {
-        padding: 10px; /* Menos espacio alrededor en pantallas chicas */
+        padding: 10px;
     }
 
     .screen-frame {
-        padding: 15px; /* Reducimos el margen interno para ganar espacio */
-        border-width: 2px; /* Un borde un poco más fino se ve mejor en móvil */
+        padding: 15px;
+        border-width: 2px;
     }
 
-    /* Ajustes de Tipografías */
     .season-tag {
-        font-size: 1.3rem; /* Encoge el texto "SEASON 7" */
+        font-size: 1.3rem;
         letter-spacing: 3px;
     }
 
     .subtitle {
-        font-size: 1rem; /* Subtítulo más compacto */
+        font-size: 1rem;
         letter-spacing: 1px;
         margin-bottom: 20px;
     }
 
     .event-title {
-        font-size: 1.3rem; /* Nombre de Oscar responsivo */
+        font-size: 1.3rem;
     }
 
     .time-coordinates {
-        font-size: 1.1rem; /* El reloj digital se adapta para no romperse en dos líneas */
+        font-size: 2rem;
         letter-spacing: 1px;
     }
 
-    /* Ajustes para los botones */
     #enter-btn, .btn-outline {
-        width: 100%; /* Hacemos que los botones ocupen todo el ancho disponible */
+        width: auto;
         padding: 12px 20px;
         font-size: 1rem;
     }
 
 
     .lights-section {
-        max-width: 260px; /* Se hace un poco más angosto en celulares */
+        max-width: 260px;
         margin: 15px auto;
     }
     .lights-wire {
-        margin-bottom: -10px; /* Reducimos el margen negativo en móvil */
+        margin-bottom: -10px;
     }
     .lights-string {
-        gap: 12px; /* Juntamos los focos para que quepan horizontalmente en el celular */
+        gap: 12px;
     }
 
     .light-bulb {
-        width: 18px;  /* Focos un poco más pequeños */
+        width: 18px;
         height: 28px;
     }
 
     .light-letter {
-        font-size: 1.3rem; /* Letras de los focos más chicas */
+        font-size: 5rem;
     }
 
-    /* Reducimos la curvatura en móvil para evitar saltos raros */
     .light-container:nth-child(2),
     .light-container:nth-child(4) {
         margin-top: 8px;
@@ -569,6 +607,9 @@ body {
         align-items: center;    
         text-align: center;
     }
+    .logo-area .main-logo {
+        max-width: 80%; 
+    }
 }
 
 /* ==========================================================================
@@ -576,10 +617,9 @@ body {
    ========================================================================== */
 @media (max-width: 480px) {
     .screen-frame {
-        padding: 12px; /* Aprovechamos al máximo cada milímetro de pantalla */
+        padding: 12px;
     }
 
-    /* Reducimos el tamaño de los títulos principales */
     .season-tag {
         font-size: 1.1rem;
         letter-spacing: 2px;
@@ -590,45 +630,42 @@ body {
         margin-bottom: 15px;
     }
 
-    /* Ajustamos los datos del evento */
     .event-title {
         font-size: 1.2rem;
         margin-bottom: 15px;
     }
 
     .time-coordinates {
-        font-size: 0.95rem; /* Ajuste clave para que las coordenadas de tiempo quepan en una sola línea */
+        font-size: 1.5rem;
         letter-spacing: 0.5px;
         margin-bottom: 15px;
     }
 
-    /* Achicamos los botones para que no se vean gigantes en pantallas mini */
     #enter-btn, .btn-outline {
         padding: 10px 15px;
         font-size: 0.9rem;
     }
 
     .lights-section {
-        max-width: 200px; /* Más compacto para pantallas ultra pequeñas */
+        max-width: 200px;
     }
     .lights-wire {
-        margin-bottom: -8px; /* Ajuste milimétrico para pantallas mini */
+        margin-bottom: -8px;
     }
 
     .lights-string {
-        gap: 6px; /* Juntamos los focos casi al mínimo espacio posible */
+        gap: 6px;
     }
 
     .light-bulb {
-        width: 14px;  /* Focos más estilizados y pequeños */
+        width: 14px;
         height: 22px;
     }
 
     .light-letter {
-        font-size: 1.1rem; /* Letras más pequeñas para que sigan centradas bajo cada foco */
+        font-size: 2.5rem;
     }
 
-    /* Suavizamos aún más los márgenes de la curvatura para evitar saltos de línea */
     .light-container:nth-child(2),
     .light-container:nth-child(4) {
         margin-top: 4px;
@@ -636,5 +673,9 @@ body {
 
     .light-container:nth-child(3) {
         margin-top: 8px;
+    }
+
+    .logo-area .main-logo {
+        max-width: 70%;
     }
 }
