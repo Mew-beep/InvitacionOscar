@@ -610,6 +610,26 @@ body {
     .logo-area .main-logo {
         max-width: 80%; 
     }
+
+    .footer-stranger {
+        margin-top: 30px;
+        padding: 15px 10px 30px 10px; /* Añadimos 30px abajo para que el botón no quede pegado al borde del cel */
+        background: rgba(5, 5, 6, 0.95); /* Más oscuro para mejorar legibilidad en pantallas chicas */
+    }
+
+    .texto-creativo {
+        font-size: 0.75rem; /* Letras un poco más pequeñas para que no se rompan en dos líneas */
+    }
+
+    .firma-ano {
+        font-size: 0.7rem;
+    }
+
+    .link-contacto-stranger {
+        font-size: 0.75rem;
+        padding: 10px 12px; /* Botón ligeramente más alto, ideal para presionar con el dedo */
+        width: 90%; /* Se adapta al ancho de la pantalla móvil */
+    }
 }
 
 /* ==========================================================================
@@ -678,6 +698,34 @@ body {
     .logo-area .main-logo {
         max-width: 70%;
     }
+
+    .footer-stranger {
+        margin-top: 25px;
+        padding: 12px 8px 35px 8px; /* Más colchón abajo para evitar la barra de navegación del celular */
+    }
+
+    .linea-neon-roja {
+        width: 90%; /* Hacemos la línea un poquito más larga para equilibrar la pantalla chica */
+        margin-bottom: 12px;
+    }
+
+    .texto-creativo {
+        font-size: 0.7rem; /* Reducimos para evitar saltos de línea raros */
+        letter-spacing: 0.5px;
+    }
+
+    .firma-ano {
+        font-size: 0.65rem;
+        margin: 4px 0 10px 0;
+    }
+
+    .link-contacto-stranger {
+        font-size: 0.68rem; /* Tamaño óptimo para que "Diseño y desarrollo por Ari | Cotiza aquí" quepa completo */
+        padding: 12px 8px; /* Más alto el botón para que sea súper fácil de clickear con el pulgar */
+        width: 100%; /* Ocupa todo el ancho disponible del contenedor */
+        letter-spacing: 0.5px;
+        white-space: normal; /* Si el celular es extremadamente viejo o chico, permite romper línea limpiamente */
+    }
 }
 
 /* ==========================================================================
@@ -740,3 +788,4 @@ body {
     text-shadow: none;
     border-color: #ff1e1e;
 }
+

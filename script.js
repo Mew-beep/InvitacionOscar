@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. SISTEMA DE DESTELLOS DEL MUNDO DEL REVÉS
     // ==========================================================================
     const particles = [];
-    const particleCount = isMobile ? 40 : 100;
+    const particleCount = isMobile ? 30 : 70;
 
     class Particle {
         constructor() {
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.y = canvas.height + 20; 
 
             if (isMobile) {
-                this.size = Math.random() * 8 + 8;
+                this.size = Math.random() * 8 + 6;
             } else {
                 this.size = Math.random() * 15 + 15;
             }
