@@ -1,4 +1,4 @@
-#Invtación de cumpleaños
+# Invitacion de cumpleaños
 
 Invitación de cumpleaños interactiva con tematica de Stranger Things
 
